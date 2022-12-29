@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+  <title>Ant Classifier</title>
+{% endblock %}
+
+{% block content %}
+
+<form method="post">
+  <div class="mb-3">
+    <label class="form-label">Thorax color</label>
+    <input type="text" class="form-control" name="thorax_color" value="BLACK">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Paunch color</label>
+    <input type="text" class="form-control" name="paunch_color" value="BLACK">
+  </div>
+  <div class="mb-3">
+      <label class="form-label" >Ant length (mm)</label>
+      <input type="number" name="length">
+  </div>
+    <div class="mb-3">
+      <label class="form-label" >When you found ant</label>
+      <input type="date" name="finding_date">
+  </div>
+    <div class="mb-3">
+      <label class="form-label" >Image</label>
+      <input type="file" name='ant_image' accept="imgs/*">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endblock %}
