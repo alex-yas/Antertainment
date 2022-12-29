@@ -6,8 +6,6 @@ import numpy as np
 import pandas as pd
 import torch
 
-from ant_api.yolo import yolo_detect_img
-
 
 def get_normal_distribution(mean, low, upp, sd=1, num_samples=1000):
     return truncnorm((low - mean) / sd, (upp - mean) / sd, loc=mean, scale=sd).rvs(num_samples)

@@ -11,11 +11,11 @@ from model.ant_input import AntInput
 def yolo_get_label(img_path):
     weights = '/home/a.yasinetski/PycharmProjects/Study/Antertainment/ml/ml_models/last.pt'
     model = torch.hub.load('ultralytics/yolov5', 'custom', path=weights, force_reload=True)
-    img = Image.open('static/' + img_path)
+    img = Image.open('static/raw/' + img_path)
     results = model(img)
     img = results.render()[0]
     img = Image.fromarray(img)
-    save_path = 'static/predict.jpg'
+    save_path = 'static/predictions/predict.jpg'
     img.save(save_path)
     annotation = results.pandas().xyxy[0]
     values, counts = np.unique(annotation['class'].values, return_counts=True)
@@ -35,11 +35,12 @@ def predict_label(img_path, ant_input: AntInput):
         'size': [ant_input.length],
         'predict': [yolo_get_label(img_path)]
     })
+
     label = clf.predict(ant_info)[0]
     label_code ={
         0: 1,
         1: 0,
-        2: 3,
-        3: 2
+        2: 2,
+        3: 3
     }
     return label_code[label]
